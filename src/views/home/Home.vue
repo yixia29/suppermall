@@ -4,7 +4,7 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <scroll class='scroll-content' ref='scroll'>
+    <scroll class='scroll-content' ref='scroll' :probe-type='3' @scroll='contentScroll'>
       <!-- 2.轮播图部分 -->
       <home-swiper :banners="banners"></home-swiper>
       <!-- 3.推荐部分 -->
@@ -15,7 +15,7 @@
       <tab-control :title="['流行','新款','精选']" class="tab-control" @tabClick="tabClick"></tab-control>
       <goods-list :goods="showGoods"></goods-list>
     </scroll>
-    <back-top @click.native='backClick'></back-top>
+    <back-top @click.native='backClick' v-show='isShowBackTop'></back-top>
     <!-- <ul>
       <li>hhh1</li>
       <li>hhh2</li>
@@ -80,7 +80,8 @@ export default {
         new: { page: 0, list: [] },
         sell: { page: 0, list: [] }
       },
-      currentType: "pop"
+      currentType: "pop",
+      isShowBackTop:false
     };
   },
   computed: {
@@ -122,6 +123,9 @@ export default {
     backClick(){
       // this.$refs.scroll.scroll.scrollTo(0,0,500)
       this.$refs.scroll.scrollTo(0,0)
+      },
+      contentScroll(position){
+        this.isShowBackTop=(-position.y)>1000
       },
     /**
      * 网络请求相关的方法
