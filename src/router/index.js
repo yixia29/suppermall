@@ -7,12 +7,14 @@ const Home = () =>
     import ('../views/home/Home.vue')
 
 const Category = () =>
-    import ('../views/category/Category.vue')
+    import ('views/category/Category.vue')
 const ShopCart = () =>
-    import ('../views/shopcart/ShopCart.vue')
+    import ('views/shopcart/ShopCart.vue')
 
 const ProFile = () =>
-    import ('../views/profile/ProFile.vue')
+    import ('views/profile/ProFile.vue')
+const Detail = () =>
+    import ('views/detail/Detail.vue')
     //   const routes = [
     //   {
     //     path: '/',
@@ -46,6 +48,9 @@ const routes = [{
     {
         path: '/profile',
         component: ProFile
+    }, {
+        path: '/detail/:iid',
+        component: Detail
     }
 ]
 

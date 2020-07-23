@@ -10,7 +10,7 @@ export default {};
 
 <style>
 #tab-bar {
-  z-index:100;
+  z-index:9;
   height: 49px;
   background-color: #ccc;
   display: flex;

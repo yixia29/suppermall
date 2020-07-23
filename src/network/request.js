@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+//网络模块的封装
 export function request(config) {
     //1.创建axios实例
     const instance = axios.create({
@@ -23,7 +24,8 @@ export function request(config) {
             console.log(err);
 
         })
-        //3.发送真正的网络请求
+        //3.发送真正的网络请求，instance返回promise
+        //则调用reques这个函数时，直接用.then和.catch
     return instance(config)
 }
 

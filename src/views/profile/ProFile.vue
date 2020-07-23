@@ -1,15 +1,65 @@
 <template>
   <div>
-      <h2>我的</h2>
+      <scroll class="content1">
+        <ul>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        <li>hhh</li>
+        </ul>
+      </scroll>
   </div>
 </template>
 
 <script>
+import  Scroll from "../../components/common/scroll/Scroll"
 export default {
-name:'Profile'
+name:'Profile',
+components:{
+  Scroll
+}
 }
 </script>
 
-<style>
-
+<style scoped>
+.content1{
+  height: 100px;
+  background-color: red;
+  overflow: hidden;
+}
 </style>

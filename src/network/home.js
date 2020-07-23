@@ -1,5 +1,6 @@
 import { request } from './request.js'
 
+//首页所有的网络请求
 export function getHomeMultidata() {
     return request({
         url: '/home/multidata'
