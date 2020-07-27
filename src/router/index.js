@@ -8,8 +8,8 @@ const Home = () =>
 
 const Category = () =>
     import ('views/category/Category.vue')
-const ShopCart = () =>
-    import ('views/shopcart/ShopCart.vue')
+const Shopcart = () =>
+    import ('views/shopcart/Shopcart.vue')
 
 const ProFile = () =>
     import ('views/profile/ProFile.vue')
@@ -43,7 +43,7 @@ const routes = [{
     },
     {
         path: '/shopcart',
-        component: ShopCart
+        component: Shopcart
     },
     {
         path: '/profile',

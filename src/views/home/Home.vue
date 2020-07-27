@@ -13,7 +13,7 @@
     <scroll
       class="scroll-content"
       ref="scroll"
-      :probe-type="3"
+     :probe-type='0'
       @scroll="contentScroll"
       :pull-up-load="true"
       @pullingUp="loadMore"

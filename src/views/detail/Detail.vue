@@ -13,6 +13,7 @@
     </scroll>
     <back-top v-show="isShowBackTop" @click.native="toTop"></back-top>
     <detail-bottom-bar @addToCart="addToCart"></detail-bottom-bar>
+    <!-- <Toast :message="message" :toastShow="toastShow"></Toast> -->
   </div>
 </template>
 
@@ -28,22 +29,23 @@ import DetailCommentInfo from "views/detail/childComps/DetailCommentInfo";
 import DetailBottomBar from "views/detail/childComps/DetailBottomBar";
 //导入common的组件
 import Scroll from "components/common/scroll/Scroll";
+// import Toast from "components/common/toast/Toast";
 //导入content的组件
 import GoodsList from "components/content/goods/GoodsList";
 // import BackTop from "components/content/backTop/BackTop";
 //导入混入的内容
-import {backTopMixin} from "common/mixin"
+import { backTopMixin } from "common/mixin";
 //网络请求
 import {
   getDetail,
   Goods,
   Shop,
   GoodsParams,
-  getDetailRecommend
+  getDetailRecommend,
 } from "network/detail";
 export default {
   name: "Detail",
-  mixins:[backTopMixin],
+  mixins: [backTopMixin],
   data() {
     return {
       iid: null,
@@ -54,6 +56,8 @@ export default {
       goodsParams: {},
       commentInfo: {},
       recommends: [],
+      // message: "",
+      // toastShow: false,
       // isShowBackTop: false
     };
   },
@@ -68,13 +72,14 @@ export default {
     DetailBottomBar,
     Scroll,
     GoodsList,
+    // Toast,
     // BackTop
   },
   methods: {
     debounce(func, delay) {
       //声明计数器
       let timer = null;
-      return function(...args) {
+      return function (...args) {
         if (timer) clearTimeout(timer);
         timer = setTimeout(() => {
           func.apply(this, args);
@@ -83,27 +88,36 @@ export default {
       };
     },
     contentScroll(position) {
-      this.isShowBackTop = -(position.y) > 1000;
+      this.isShowBackTop = -position.y > 1000;
     },
     getDetailRecommend() {
-      getDetailRecommend().then(res => {
+      getDetailRecommend().then((res) => {
         console.log(res);
         this.recommends = res.data.list;
       });
     },
-    addToCart(){
+    addToCart() {
       //1.获取购物车需要展示的信息
-      const product={}
-      product.image=this.topImages[0]
-      product.title=this. goods.title
-      product.desc=this.goods.desc
-      product.realPrice=this.realPrice
-      product.iid=this.iid
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.title;
+      product.desc = this.goods.desc;
+      product.realPrice = this.goods.realPrice;
+      product.iid = this.iid;
       //2.将商品添加到购物车（vuex）
-    // this.$store.commit("addCart",product)
-    this.$store.dispatch("addCart",product)
-
-    }
+      // this.$store.commit("addCart",product)
+      this.$store.dispatch("addCart", product).then((res) => {
+        console.log(res);
+        // this.message = res;
+        // this.toastShow = true;
+        // setTimeout(() => {
+        //   this.toastShow = false;
+        //   // this.message = ''
+        // }, 1000);
+        this.$toast.toastShow(res,15000)
+        //dispatch返回promise
+      });
+    },
     // toTop(){
     //   this.$refs.scroll.scrollTo(0,0)
     // }
@@ -112,7 +126,7 @@ export default {
     //1.保存传入的iid
     this.iid = this.$route.params.iid;
     //2.根据iid发送详情页的网络请求
-    getDetail(this.iid).then(res => {
+    getDetail(this.iid).then((res) => {
       console.log(res);
       //2.1获取轮播图数据
       const data = res.result;
@@ -146,7 +160,7 @@ export default {
     this.$bus.$on("imgLoad", () => {
       refresh();
     });
-  }
+  },
 };
 </script>
 

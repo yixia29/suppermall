@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import mutations from "./mutations"
 import actions from "./actions"
+import getters from "./getters"
 Vue.use(Vuex)
 
 const state = {
@@ -13,5 +14,6 @@ export default new Vuex.Store({
     //不能直接修改state里的变量，要通过mutations修改
     mutations,
     actions,
+    getters,
     modules: {}
 })
